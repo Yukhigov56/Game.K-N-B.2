@@ -1,7 +1,13 @@
 
+
+
+
+
+
+
 const buttons = document.querySelectorAll("button")
 
-// Создал div с классом result
+// Создал div с id result
 const resultDiv = document.getElementById("result")
 
 // 1 Функция 
@@ -11,9 +17,16 @@ function getComputerChoice() {
     return arr[randomIndex];
 }
 
+
+let userAccount = 0;
+let computerAccount = 0;
+let generalAccount = 0;
+
 // 2 Функция
 function playRound(userChoise, computerChoise) {
     if (userChoise === computerChoise) {
+        computerAccount++
+        userAccount++
         return "Ничья!";
     }
 
@@ -22,16 +35,28 @@ function playRound(userChoise, computerChoise) {
         (userChoise === "Камень" && computerChoise === "Ножница") ||
         (userChoise === "Бумага" && computerChoise === "Камень")
     ) {
+        userAccount++
         return "Вы выиграли!";
-    }else {
-        return "Вы проиграли!";
+    }
+   
+    else {
+        computerAccount++
+        return "Компьютер побеждает!";
     }
 }
 
 // 3 Функция
 function outputResult (userChoise, computerChoise, result) {
-    resultDiv.innerHTML = `Вы выбрали: ${userChoise}<br/> Компьютер выбирает: ${computerChoise}<br/> ${result}`;
+    resultDiv.innerHTML = `Вы выбрали: ${userChoise}<br/> Компьютер выбрал: ${computerChoise}<br/> ${result}<br/> Раунд: ${++generalAccount}<br/> Счет:<br/> Игрок ${userAccount}<br/> Компьютер: ${computerAccount}`;
+    
+    if (generalAccount === 5) {
+        generalAccount = 0
+        userAccount = 0
+        computerAccount = 0
+    }
 }
+
+
 
 // Привязываем обработчик события
 buttons.forEach(button => {

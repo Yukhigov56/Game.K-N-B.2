@@ -28,6 +28,7 @@ button:hover {
 .container-result {
     display: flex;
     justify-content: center;
+    margin-top: 50px;
 }
 
 #result {
